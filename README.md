@@ -91,10 +91,3 @@ com.example.gestorarchivosipn
 ├── FileViewModel.kt       # Lógica de Negocio (MVVM)
 ├── FileScreens.kt         # Componentes UI (Composable functions)
 └── MainActivity.kt        # Entry Point y Configuración de Navegación
-
-
-🤝 Contribución
-
-Este es un proyecto académico. Si deseas contribuir o reportar errores, por favor abre un Issue o envía un Pull Request.
-
-Desarrollado con ❤️ y mucho código.
