@@ -1,7 +1,11 @@
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp") version "1.9.22-1.0.17"
+    // ACTUALIZADO: Usamos 2.0.21 para coincidir con la versión que tu proyecto ya tiene cargada
+    id("org.jetbrains.kotlin.android") version "2.0.21"
+    // ACTUALIZADO: Usamos 2.0.21 para coincidir con Kotlin
+    id("org.jetbrains.kotlin.plugin.compose") version "2.0.21"
+    // ACTUALIZADO: KSP compatible con Kotlin 2.0.21
+    id("com.google.devtools.ksp") version "2.0.21-1.0.27"
 }
 
 android {
@@ -40,9 +44,9 @@ android {
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8" // Ajustado para compatibilidad general
-    }
+    // ELIMINADO: composeOptions { kotlinCompilerExtensionVersion = ... }
+    // Ya no es necesario con el nuevo plugin de arriba.
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -56,8 +60,8 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
 
-    // Jetpack Compose (Usando BOM para manejar versiones)
-    implementation(platform("androidx.compose:compose-bom:2024.02.00"))
+    // Jetpack Compose BOM (Mantiene las versiones de UI coordinadas)
+    implementation(platform("androidx.compose:compose-bom:2024.06.00"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
@@ -66,7 +70,7 @@ dependencies {
     // Navegación
     implementation("androidx.navigation:navigation-compose:2.7.7")
 
-    // Iconos extendidos (Carpetas, Archivos, etc.)
+    // Iconos extendidos
     implementation("androidx.compose.material:material-icons-extended:1.6.3")
 
     // Carga de imágenes (Coil)
@@ -78,14 +82,14 @@ dependencies {
     implementation("androidx.room:room-ktx:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")
 
-    // Gson para JSON pretty print
+    // Gson
     implementation("com.google.code.gson:gson:2.10.1")
 
     // Testing
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2024.02.00"))
+    androidTestImplementation(platform("androidx.compose:compose-bom:2024.06.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
